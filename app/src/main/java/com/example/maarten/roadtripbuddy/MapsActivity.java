@@ -75,6 +75,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void createMarker(LatLng point, String cityName){
+
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
+
         mMap.addMarker(new MarkerOptions().position(point).title(cityName));
         mMap.animateCamera(CameraUpdateFactory.newLatLng(point));
     }
