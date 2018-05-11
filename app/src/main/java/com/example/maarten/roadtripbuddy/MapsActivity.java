@@ -42,9 +42,7 @@ import java.util.concurrent.TimeUnit;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-
     private static final String TAG = "poep";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +60,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(51.9176154, 4.4851675);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Rotterdam"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
+        LatLng rotterdam = new LatLng(51.9176154, 4.4851675);
+        mMap.addMarker(new MarkerOptions().position(rotterdam).title("Marker in Rotterdam"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(rotterdam, 10));
 
         // Click on map, add marker there, center the camera to the new marker
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -74,7 +72,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.d(TAG, "Value: " + point);
             }
         });
+    }
 
+    public void createMarker(LatLng point, String cityName){
+        mMap.addMarker(new MarkerOptions().position(point).title(cityName));
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(point));
     }
 
     public void getCityName(final LatLng point) {
@@ -96,9 +98,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             .getJSONObject(0)
                                             .get("long_name").toString();
                             Log.d(TAG, "" + cityName);
-                            mMap.addMarker(new MarkerOptions().position(point).title(cityName));
-                            mMap.animateCamera(CameraUpdateFactory.newLatLng(point));
 
+                            createMarker(point, cityName);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
