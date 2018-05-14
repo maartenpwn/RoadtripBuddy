@@ -2,6 +2,7 @@ package com.example.maarten.roadtripbuddy;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,6 +12,9 @@ public class AddCityActivity extends AppCompatActivity {
     EditText detailUserInput;
     TextView detailRecords;
     MyDBHandler dbHandler;
+    String cityName;
+
+    private static final String TAG = "poep";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +24,7 @@ public class AddCityActivity extends AppCompatActivity {
         // Get the data if intended.
         Bundle theData = getIntent().getExtras();
 
-        String cityName = theData.getString("cityName");
+        cityName = theData.getString("cityName");
 
         TextView detailCityName = (TextView) findViewById(R.id.detailCityName);
         detailCityName.setText(cityName);
@@ -36,6 +40,9 @@ public class AddCityActivity extends AppCompatActivity {
     //Print the database
     public void printDatabase(){
         String dbString = dbHandler.databaseToString();
+
+        Log.d(TAG, "printDatabase: " + dbString);
+
         detailRecords.setText(dbString);
         detailUserInput.setText("");
     }
@@ -44,7 +51,10 @@ public class AddCityActivity extends AppCompatActivity {
     //Add a product to the database
     public void addButtonClicked(View view){
         // dbHandler.add needs an object parameter.
-        Activities activity = new Activities(detailUserInput.getText().toString());
+        Activities activity = new Activities(detailUserInput.getText().toString(), cityName);
+
+        Log.d(TAG, "addButtonClicked: asdf" + cityName);
+
         dbHandler.addActivity(activity);
         printDatabase();
     }
