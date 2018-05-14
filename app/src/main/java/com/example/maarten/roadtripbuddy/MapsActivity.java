@@ -84,8 +84,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onInfoWindowClick(Marker marker) {
 
-//                Intent i = new Intent(getActivity(), AddCityActivity.class);
-//                startActivity(i);
+                Intent i = new Intent(MapsActivity.this, AddCityActivity.class);
+                i.putExtra("cityName", cityName);
+                startActivity(i);
 
                 Log.d(TAG, "onInfoWindowClick: kebab");
 
