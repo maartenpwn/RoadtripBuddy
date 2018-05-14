@@ -77,16 +77,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-    public void createMarker(LatLng point, String cityName){
+    public void createMarker(LatLng point, final String cityName){
 
         // Temp
         // Set a listener for info window events.
+        // Proberen cityName meegeven?
         mMap.setOnInfoWindowClickListener(this);
+
 
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this, cityName));
 
         mMap.addMarker(new MarkerOptions().position(point));
         mMap.animateCamera(CameraUpdateFactory.newLatLng(point));
+    }
+
+    // The custominfowindowadapter is rendered as a picture, thats why we cant onclick there.
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Log.d(TAG, "onInfoWindowClick: This is temp");
     }
 
     public void getCityName(final LatLng point) {
@@ -128,9 +136,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         queue.add(stringRequest);
     }
 
-    // The custominfowindowadapter is rendered as a picture, thats why we cant onclick there.
-    @Override
-    public void onInfoWindowClick(Marker marker) {
-        Log.d(TAG, "onInfoWindowClick: This is temp");
-    }
+
 }
