@@ -11,6 +11,7 @@ import android.support.constraint.solver.widgets.ConstraintTableLayout;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -79,11 +80,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void createMarker(LatLng point, final String cityName){
 
-        // Temp
-        // Set a listener for info window events.
-        // Proberen cityName meegeven?
-        mMap.setOnInfoWindowClickListener(this);
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
 
+//                Intent i = new Intent(getActivity(), AddCityActivity.class);
+//                startActivity(i);
+
+                Log.d(TAG, "onInfoWindowClick: kebab");
+
+            }
+
+        });
 
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this, cityName));
 
