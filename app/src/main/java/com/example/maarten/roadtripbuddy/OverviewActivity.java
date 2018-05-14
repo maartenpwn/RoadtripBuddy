@@ -17,8 +17,6 @@ import com.android.volley.toolbox.Volley;
 
 public class OverviewActivity extends AppCompatActivity {
 
-    private static final String TAG = "poep";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
