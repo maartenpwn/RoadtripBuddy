@@ -13,14 +13,22 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
     private final View mWindow;
     private Context mContext;
+    private String city;
 
-    public CustomInfoWindowAdapter(Context mContext) {
+
+    public CustomInfoWindowAdapter(Context mContext, String cityName) {
         this.mContext = mContext;
+        city = cityName;
+
         mWindow = LayoutInflater.from(mContext).inflate(R.layout.custom_info_window, null);
     }
 
     private void renderWindowText(Marker marker, View view) {
-        String title = marker.getTitle();
+        // String title = marker.getTitle();
+
+        TextView windowCityName = (TextView) view.findViewById(R.id.windowCityName);
+        windowCityName.setText(city);
+
     }
 
     @Override

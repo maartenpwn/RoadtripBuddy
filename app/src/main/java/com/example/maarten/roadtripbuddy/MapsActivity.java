@@ -59,7 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in Rotterdam and move the camera
         LatLng rotterdam = new LatLng(51.9176154, 4.4851675);
         mMap.addMarker(new MarkerOptions().position(rotterdam).title("Marker in Rotterdam"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(rotterdam, 10));
@@ -75,10 +75,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void createMarker(LatLng point, String cityName){
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this, cityName));
 
-        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
-
-        mMap.addMarker(new MarkerOptions().position(point).title(cityName));
+        mMap.addMarker(new MarkerOptions().position(point));
         mMap.animateCamera(CameraUpdateFactory.newLatLng(point));
     }
 
