@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private GoogleMap mMap;
     private static final String TAG = "poep";
@@ -78,6 +78,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void createMarker(LatLng point, String cityName){
+
+        // Temp
+        // Set a listener for info window events.
+        mMap.setOnInfoWindowClickListener(this);
+
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this, cityName));
 
         mMap.addMarker(new MarkerOptions().position(point));
@@ -123,4 +128,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         queue.add(stringRequest);
     }
 
+    // The custominfowindowadapter is rendered as a picture, thats why we cant onclick there.
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Log.d(TAG, "onInfoWindowClick: This is temp");
+    }
 }

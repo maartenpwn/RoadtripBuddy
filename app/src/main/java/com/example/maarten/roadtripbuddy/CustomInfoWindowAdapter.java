@@ -26,26 +26,12 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         city = cityName;
 
         mWindow = LayoutInflater.from(mContext).inflate(R.layout.custom_info_window, null);
-
-        // Trying shit
-        mWindow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: beter werkt dit");
-            }
-        });
     }
 
     private void renderWindowText(Marker marker, View view) {
         TextView windowCityName = (TextView) view.findViewById(R.id.windowCityName);
         windowCityName.setText(city);
     }
-
-//    public void addCityButtonClicked() {
-//        Log.d(TAG, "addCityButtonClicked: werkt de button click?");
-//        Intent i = new Intent(mContext, AddCityActivity.class);
-//        mContext.startActivity(i);
-//    }
 
     @Override
     public View getInfoWindow(Marker marker) {
