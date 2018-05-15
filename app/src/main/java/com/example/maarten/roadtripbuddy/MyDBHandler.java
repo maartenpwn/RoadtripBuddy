@@ -62,17 +62,21 @@ public class MyDBHandler extends SQLiteOpenHelper {
     // this is goint in record_TextView in the Main activity.
     public String databaseToString(String selectedCity){
 
-        Log.d(TAG, "databaseToString: selectedCity " + selectedCity);
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
+
+        // String query = "SELECT * FROM " + TABLE_ACTIVITIES + " WHERE " + COLUMN_CITYNAME + " = " + selectedCity; // why not leave out the WHERE  clause?
         String query = "SELECT * FROM " + TABLE_ACTIVITIES + " WHERE 1";// why not leave out the WHERE  clause?
 
-
+        Log.d(TAG, "databaseToString: tadaa");
+        Log.d(TAG, "databaseToString: COLUMN_CITYNAME: " + COLUMN_CITYNAME);
+        Log.d(TAG, "databaseToString: TABLE_ACTIVITIES: " + TABLE_ACTIVITIES);
+        Log.d(TAG, "databaseToString: selectedCity: " + selectedCity);
 
         //Cursor points to a location in your results
         Cursor recordSet = db.rawQuery(query, null);
-        //Move to the first row in your results
 
+        //Move to the first row in your results
         recordSet.moveToFirst();
 
         //Position after the last row means the end of the results
@@ -81,7 +85,6 @@ public class MyDBHandler extends SQLiteOpenHelper {
             if (recordSet.getString(recordSet.getColumnIndex("activityname")) != null) {
                 dbString += recordSet.getString(recordSet.getColumnIndex("activityname"));
                 dbString += recordSet.getString(recordSet.getColumnIndex("cityname"));
-                // dbString += recordSet.getString(recordSet.getColumnIndex("cityname"));
                 dbString += "\n";
             }
             recordSet.moveToNext();
