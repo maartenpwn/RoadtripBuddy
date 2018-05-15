@@ -68,10 +68,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
         // String query = "SELECT * FROM " + TABLE_ACTIVITIES + " WHERE " + COLUMN_CITYNAME + " = " + selectedCity; // why not leave out the WHERE  clause?
         String query = "SELECT * FROM " + TABLE_ACTIVITIES + " WHERE 1";// why not leave out the WHERE  clause?
 
-        Log.d(TAG, "databaseToString: tadaa");
-        Log.d(TAG, "databaseToString: COLUMN_CITYNAME: " + COLUMN_CITYNAME);
-        Log.d(TAG, "databaseToString: TABLE_ACTIVITIES: " + TABLE_ACTIVITIES);
-        Log.d(TAG, "databaseToString: selectedCity: " + selectedCity);
+//        Log.d(TAG, "databaseToString: tadaa");
+//        Log.d(TAG, "databaseToString: COLUMN_CITYNAME: " + COLUMN_CITYNAME);
+//        Log.d(TAG, "databaseToString: TABLE_ACTIVITIES: " + TABLE_ACTIVITIES);
+//        Log.d(TAG, "databaseToString: selectedCity: " + selectedCity);
 
         //Cursor points to a location in your results
         Cursor recordSet = db.rawQuery(query, null);
@@ -83,9 +83,18 @@ public class MyDBHandler extends SQLiteOpenHelper {
         while (!recordSet.isAfterLast()) {
             // null could happen if we used our empty constructor
             if (recordSet.getString(recordSet.getColumnIndex("activityname")) != null) {
-                dbString += recordSet.getString(recordSet.getColumnIndex("activityname"));
-                dbString += recordSet.getString(recordSet.getColumnIndex("cityname"));
-                dbString += "\n";
+
+                String city = recordSet.getString(recordSet.getColumnIndex("cityname"));
+
+                Log.d(TAG, "Test1: " + city);
+                Log.d(TAG, "Test2: " + selectedCity);
+
+                if(city.equals(selectedCity)){
+                    dbString += recordSet.getString(recordSet.getColumnIndex("activityname"));
+                    // dbString += recordSet.getString(recordSet.getColumnIndex("cityname"));
+                    dbString += "\n";
+                }
+
             }
             recordSet.moveToNext();
         }
