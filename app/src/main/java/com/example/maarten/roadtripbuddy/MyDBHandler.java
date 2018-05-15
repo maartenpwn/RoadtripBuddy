@@ -9,7 +9,7 @@ import android.util.Log;
 
 public class MyDBHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "activityDB.db";
     public static final String TABLE_ACTIVITIES = "activities";
     public static final String COLUMN_ID = "_id";
@@ -60,16 +60,18 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     // this is goint in record_TextView in the Main activity.
-    public String databaseToString(){
+    public String databaseToString(String selectedCity){
+
+        Log.d(TAG, "databaseToString: selectedCity " + selectedCity);
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_ACTIVITIES + " WHERE 1";// why not leave out the WHERE  clause?
 
+
+
         //Cursor points to a location in your results
         Cursor recordSet = db.rawQuery(query, null);
         //Move to the first row in your results
-
-        Log.d(TAG, "databaseToString: " + recordSet);
 
         recordSet.moveToFirst();
 
@@ -78,6 +80,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
             // null could happen if we used our empty constructor
             if (recordSet.getString(recordSet.getColumnIndex("activityname")) != null) {
                 dbString += recordSet.getString(recordSet.getColumnIndex("activityname"));
+                dbString += recordSet.getString(recordSet.getColumnIndex("cityname"));
                 // dbString += recordSet.getString(recordSet.getColumnIndex("cityname"));
                 dbString += "\n";
             }

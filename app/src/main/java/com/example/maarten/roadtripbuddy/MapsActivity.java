@@ -73,7 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onMapClick(LatLng point) {
             getCityName(point);
-            Log.d(TAG, "Value: " + point);
+            Log.d(TAG, "Coordinaten: " + point);
             }
         });
     }
@@ -83,13 +83,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-
                 Intent i = new Intent(MapsActivity.this, AddCityActivity.class);
                 i.putExtra("cityName", cityName);
                 startActivity(i);
-
-                Log.d(TAG, "onInfoWindowClick: kebab");
-
             }
 
         });
@@ -107,7 +103,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void getCityName(final LatLng point) {
-        Log.d(TAG, "getCityName: " + point);
+
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="https://maps.googleapis.com/maps/api/geocode/json?latlng=" + point.latitude+","+ point.longitude + "&key=AIzaSyA5aCPbDJlQW05DJWMKyj-x5Qb5-jAsFws&result_type=administrative_area_level_2";

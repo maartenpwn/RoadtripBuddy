@@ -39,9 +39,7 @@ public class AddCityActivity extends AppCompatActivity {
 
     //Print the database
     public void printDatabase(){
-        String dbString = dbHandler.databaseToString();
-
-        Log.d(TAG, "printDatabase: " + dbString);
+        String dbString = dbHandler.databaseToString(cityName);
 
         detailRecords.setText(dbString);
         detailUserInput.setText("");
@@ -53,7 +51,7 @@ public class AddCityActivity extends AppCompatActivity {
         // dbHandler.add needs an object parameter.
         Activities activity = new Activities(detailUserInput.getText().toString(), cityName);
 
-        Log.d(TAG, "addButtonClicked: asdf" + cityName);
+        Log.d(TAG, "addButtonClicked: stad " + cityName);
 
         dbHandler.addActivity(activity);
         printDatabase();
