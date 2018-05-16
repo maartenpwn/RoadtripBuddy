@@ -59,8 +59,6 @@ public class MyCitysActivity extends AppCompatActivity {
                         // value op (naam) en convert die in een string
                         String city = String.valueOf(parent.getItemAtPosition(position));
 
-                        //Toast.makeText(MyCitysActivity.this, city, Toast.LENGTH_LONG).show();
-
                         Intent i = new Intent(MyCitysActivity.this, AddCityActivity.class);
                         i.putExtra("cityName", city);
                         startActivity(i);
