@@ -27,7 +27,6 @@ public class OverviewActivity extends AppCompatActivity {
         }
     }
 
-    /* Trying shit */
     private void init(){
         Button mapButton = (Button) findViewById(R.id.mapButton);
         mapButton.setOnClickListener(new View.OnClickListener() {
@@ -59,15 +58,6 @@ public class OverviewActivity extends AppCompatActivity {
         }
         return false;
     }
-    /* End trying shit */
-
-
-
-
-//    public void mapButtonClicked(View v) {
-//        Intent i = new Intent(this, MapsActivity.class);
-//        startActivity(i);
-//    }
 
     public void cityButtonClicked(View v) {
         Intent i = new Intent(this, MyCitysActivity.class);

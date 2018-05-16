@@ -39,42 +39,26 @@ public class MapsActivity extends FragmentActivity
     private GoogleMap mMap;
     private static final String TAG = "poep";
 
-    // tailsdjflk; dsjfasdfjk adsfl;as
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
 
-    //vars
     private Boolean mLocationPermissionsGranted = false;
     private FusedLocationProviderClient mFusedLocationProviderClient;
-    /// aslk;djf kl;sadjfl;ad sjfkl;dsj fl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        /// asjdl;fka;sdjlfsl;kf
         getLocationPermission();
-        //// kasdlfadkls;fj aslk;f
-
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-
-        /*
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        */
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
-        /* Trying shit for asdf */
         if (mLocationPermissionsGranted) {
             getDeviceLocation();
 
@@ -87,9 +71,6 @@ public class MapsActivity extends FragmentActivity
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
         }
-        /* enddddd */
-
-
 
         /* Add a marker in Rotterdam and move the camera */
 //        LatLng rotterdam = new LatLng(51.9176154, 4.4851675);
@@ -106,9 +87,6 @@ public class MapsActivity extends FragmentActivity
         });
     }
 
-
-
-    /* Trying aklsdjfkl dsajfl;adsjfk;a jf; */
     private void getDeviceLocation(){
         Log.d(TAG, "getDeviceLocation: getting the devices current location");
 
@@ -148,7 +126,6 @@ public class MapsActivity extends FragmentActivity
         Log.d(TAG, "initMap: initializing map");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
-        //mapFragment.getMapAsync(MapActivity.this);
         mapFragment.getMapAsync(MapsActivity.this);
     }
 
@@ -198,14 +175,6 @@ public class MapsActivity extends FragmentActivity
             }
         }
     }
-    /* sdaifjasd;flk adsjkfl;adjs f;as */
-
-
-
-
-
-
-
 
     public void createMarker(LatLng point, final String cityName){
 
@@ -226,6 +195,7 @@ public class MapsActivity extends FragmentActivity
     }
 
     // The custominfowindowadapter is rendered as a picture, thats why we cant onclick there.
+    // THis shit still has 2 go
     @Override
     public void onInfoWindowClick(Marker marker) {
         Log.d(TAG, "onInfoWindowClick: This is temp");
