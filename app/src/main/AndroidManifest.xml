@@ -32,8 +32,8 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".AddCityActivity"></activity>
-
+        <activity android:name=".AddCityActivity" />
+        <activity android:name=".MyCitysActivity"></activity>
     </application>
 
 </manifest>

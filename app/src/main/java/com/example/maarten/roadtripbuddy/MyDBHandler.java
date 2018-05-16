@@ -68,11 +68,6 @@ public class MyDBHandler extends SQLiteOpenHelper {
         // String query = "SELECT * FROM " + TABLE_ACTIVITIES + " WHERE " + COLUMN_CITYNAME + " = " + selectedCity; // why not leave out the WHERE  clause?
         String query = "SELECT * FROM " + TABLE_ACTIVITIES + " WHERE 1";// why not leave out the WHERE  clause?
 
-//        Log.d(TAG, "databaseToString: tadaa");
-//        Log.d(TAG, "databaseToString: COLUMN_CITYNAME: " + COLUMN_CITYNAME);
-//        Log.d(TAG, "databaseToString: TABLE_ACTIVITIES: " + TABLE_ACTIVITIES);
-//        Log.d(TAG, "databaseToString: selectedCity: " + selectedCity);
-
         //Cursor points to a location in your results
         Cursor recordSet = db.rawQuery(query, null);
 
@@ -86,12 +81,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
                 String city = recordSet.getString(recordSet.getColumnIndex("cityname"));
 
-                Log.d(TAG, "Test1: " + city);
-                Log.d(TAG, "Test2: " + selectedCity);
-
                 if(city.equals(selectedCity)){
                     dbString += recordSet.getString(recordSet.getColumnIndex("activityname"));
-                    // dbString += recordSet.getString(recordSet.getColumnIndex("cityname"));
                     dbString += "\n";
                 }
 
@@ -101,5 +92,42 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
         return dbString;
     }
+
+    // Trying shit
+    // this is goint in record_TextView in the Main activity.
+    public String TESTdatabaseToString(){
+
+        String dbString = "";
+        SQLiteDatabase db = getWritableDatabase();
+
+        // String query = "SELECT * FROM " + TABLE_ACTIVITIES + " WHERE " + COLUMN_CITYNAME + " = " + selectedCity; // why not leave out the WHERE  clause?
+        String query = "SELECT * FROM " + TABLE_ACTIVITIES + " WHERE 1";// why not leave out the WHERE  clause?
+
+        //Cursor points to a location in your results
+        Cursor recordSet = db.rawQuery(query, null);
+
+        //Move to the first row in your results
+        recordSet.moveToFirst();
+
+        //Position after the last row means the end of the results
+        while (!recordSet.isAfterLast()) {
+            // null could happen if we used our empty constructor
+            if (recordSet.getString(recordSet.getColumnIndex("cityname")) != null) {
+
+                // Check if the city is not already in the dbString
+                if(!dbString.contains(recordSet.getString(recordSet.getColumnIndex("cityname")))){
+                    dbString += recordSet.getString(recordSet.getColumnIndex("cityname"));
+                    dbString += "\n";
+                }
+
+            }
+            recordSet.moveToNext();
+        }
+        db.close();
+        return dbString;
+    }
+    // Trying shit
+
+
 
 }

@@ -28,4 +28,9 @@ public class OverviewActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void cityButtonClicked(View v) {
+        Intent i = new Intent(this, MyCitysActivity.class);
+        startActivity(i);
+    }
+
 }
