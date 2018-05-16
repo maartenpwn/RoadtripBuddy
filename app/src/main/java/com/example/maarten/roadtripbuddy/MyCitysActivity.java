@@ -7,11 +7,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class MyCitysActivity extends AppCompatActivity {
 
-    TextView detailRecords;
+    // TextView detailRecords;
     MyDBHandler dbHandler;
 
     private static final String TAG = "poep";
@@ -22,7 +21,7 @@ public class MyCitysActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_citys);
 
 
-        detailRecords = (TextView) findViewById(R.id.detailRecords);
+        // detailRecords = (TextView) findViewById(R.id.detailRecords);
 
         dbHandler = new MyDBHandler(this, null, null, 1);
         printCitys();
@@ -37,7 +36,7 @@ public class MyCitysActivity extends AppCompatActivity {
 
         createCustomListAdapter(citys);
 
-        detailRecords.setText(dbString);
+        // detailRecords.setText(dbString);
     }
 
     public void createCustomListAdapter(String[] citys) {
