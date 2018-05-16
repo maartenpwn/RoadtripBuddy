@@ -95,7 +95,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     // Trying shit
     // this is goint in record_TextView in the Main activity.
-    public String TESTdatabaseToString(){
+    public String CitydatabaseToString(){
 
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
