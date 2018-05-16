@@ -117,7 +117,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 // Check if the city is not already in the dbString
                 if(!dbString.contains(recordSet.getString(recordSet.getColumnIndex("cityname")))){
                     dbString += recordSet.getString(recordSet.getColumnIndex("cityname"));
-                    dbString += "\n";
+                    dbString += ",";
                 }
 
             }

@@ -1,15 +1,13 @@
 package com.example.maarten.roadtripbuddy;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MyCitysActivity extends AppCompatActivity {
 
@@ -34,16 +32,16 @@ public class MyCitysActivity extends AppCompatActivity {
     public void printCitys(){
         String dbString = dbHandler.CitydatabaseToString();
 
-        // Hier ergens moet dbString naar array toe
-        // Tijdelijk een array aangemaakt
+        // Convert the string to array
+        String[] citys = dbString.split(",");
 
-        createCustomListAdapter();
+        createCustomListAdapter(citys);
 
         detailRecords.setText(dbString);
     }
 
-    public void createCustomListAdapter() {
-        String[] citys = {"Delft", "Rotterdam", "Vlaardingen", "Uku"};
+    public void createCustomListAdapter(String[] citys) {
+
 
         // Adding the custom adapter here.
         ListAdapter myAdapter = new CustomAdapter(this, citys);
