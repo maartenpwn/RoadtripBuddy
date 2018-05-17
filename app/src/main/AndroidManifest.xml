@@ -35,6 +35,15 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".AddCityActivity" />
         <activity android:name=".MyCitysActivity"></activity>
+
+        <receiver
+            android:name=".ReceiveBroadcast"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.maarten.sendbroadcast"></action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
