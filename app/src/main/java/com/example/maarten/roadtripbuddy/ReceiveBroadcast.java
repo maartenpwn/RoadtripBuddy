@@ -15,7 +15,6 @@ public class ReceiveBroadcast extends BroadcastReceiver {
     private static final String TAG = "poep";
 
     public ReceiveBroadcast() {
-
     }
 
     @Override
