@@ -21,6 +21,7 @@ public class ReceiveBroadcast extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         int level = intent.getIntExtra(BATTERY_LEVEL, 0);
+        Log.d(TAG, "onReceive: batterij leverl: " + level);
 
         if(level < 26){
             Log.d(TAG, "onReceive: low battery!" + level);
