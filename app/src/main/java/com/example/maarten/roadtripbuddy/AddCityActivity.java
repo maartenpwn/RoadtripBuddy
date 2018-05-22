@@ -55,6 +55,15 @@ public class AddCityActivity extends AppCompatActivity {
 
         dbHandler.addActivity(activity);
         printDatabase();
+
+        // asdfasdf afadsfadsf
+        // asdfsdfdasfadfadsfs
+        // asdfasdfadsfdsf
+        HttpRequest theRequest = new HttpRequest (this);
+        theRequest.execute();
+        // asdfasdf afadsfadsf
+        // asdfsdfdasfadfadsfs
+        // asdfasdfadsfdsf
     }
 
     //Delete items
