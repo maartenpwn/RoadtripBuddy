@@ -39,11 +39,18 @@ public class OverviewActivity extends AppCompatActivity {
         registerReceiver(mReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         super.onStart();
     }
-    @Override
-    protected void onStop() {
-        unregisterReceiver(mReceiver);
-        super.onStop();
-    }
+//    @Override
+//    protected void onStop() {
+//        unregisterReceiver(mReceiver);
+//        super.onStop();
+//    }
+
+
+
+
+
+
+
 
     private void init(){
         Button mapButton = (Button) findViewById(R.id.mapButton);
