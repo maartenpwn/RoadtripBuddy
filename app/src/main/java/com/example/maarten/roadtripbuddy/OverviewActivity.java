@@ -17,8 +17,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 public class OverviewActivity extends AppCompatActivity {
 
     private static final int ERROR_DIALOG_REQUEST = 9001;
-    private static final String TAG = "poep";
-
+    private static final String TAG = "myTag";
     private BroadcastReceiver mReceiver;
 
     @Override
@@ -26,6 +25,7 @@ public class OverviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
 
+        // If the map request is succesfull, we load the map
         if(isServicesOK()){
             init();
         }
@@ -33,36 +33,14 @@ public class OverviewActivity extends AppCompatActivity {
         mReceiver = new ReceiveBroadcast();
     }
 
-    /* For broadcast receiver */
+    // After the oncreate we register our Receiver and pass the battery level onchange
     @Override
     protected void onStart() {
         registerReceiver(mReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         super.onStart();
     }
-//    @Override
-//    protected void onStop() {
-//        unregisterReceiver(mReceiver);
-//        super.onStop();
-//    }
 
-
-
-
-
-
-
-
-    private void init(){
-        Button mapButton = (Button) findViewById(R.id.mapButton);
-        mapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(OverviewActivity.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
+    // Function to check the response from the google service
     public boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
 
@@ -84,6 +62,20 @@ public class OverviewActivity extends AppCompatActivity {
         return false;
     }
 
+    // If the service connection is succesfull
+    // we add an onclick to the button that takes us to MapsActivity.class
+    private void init(){
+        Button mapButton = (Button) findViewById(R.id.mapButton);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OverviewActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    // If we click on the cityButton we go to MyCitysActivity.class
     public void cityButtonClicked(View v) {
         Intent i = new Intent(this, MyCitysActivity.class);
         startActivity(i);
