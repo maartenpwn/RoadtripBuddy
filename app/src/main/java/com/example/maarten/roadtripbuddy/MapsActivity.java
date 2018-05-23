@@ -67,29 +67,34 @@ public class MapsActivity extends FragmentActivity
         //
         // If you want to use the emulator uncommented this function
         // To get a fake current location in Rotterdam :)
+        /* **************************************************************** */
 
-            /*
+        /* **************************************************************** */
+        // Are you using a emulator? use the function below!
+        /* **************************************************************** */
+
             // Add a marker in Rotterdam and move the camera there
             LatLng rotterdam = new LatLng(51.9176154, 4.4851675);
             mMap.addMarker(new MarkerOptions().position(rotterdam).title("Marker in Rotterdam"));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(rotterdam, 10));
-            */
 
-        // and comment this if statement
+        /* **************************************************************** */
+        // Are you using a real device? use the function below!
+        /* **************************************************************** */
 
-            // /*
-            if (mLocationPermissionsGranted) {
-                getDeviceLocation();
+            // If the user grands permission, we get the current location
+//            if (mLocationPermissionsGranted) {
+//                getDeviceLocation();
+//
+//                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+//                        != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+//                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                    return;
+//                }
+//                mMap.setMyLocationEnabled(true);
+//                mMap.getUiSettings().setMyLocationButtonEnabled(false);
+//            }
 
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                mMap.setMyLocationEnabled(true);
-                mMap.getUiSettings().setMyLocationButtonEnabled(false);
-            }
-            // */
         /* **************************************************************** */
 
 

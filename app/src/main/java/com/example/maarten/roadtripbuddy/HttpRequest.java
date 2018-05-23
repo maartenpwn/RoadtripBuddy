@@ -37,9 +37,9 @@ public class HttpRequest extends AsyncTask<Void,Void,String> {
     String urlAddress="https://stud.hosted.hr.nl/0882911/restfull/books";
 
     // The fields we create static
-    String titleField = "veld11";
-    String authorField = "veld11";
-    String genreField = "veld11";
+    String titleField = "lorum";
+    String authorField = "ipsum";
+    String genreField = "nosum";
 
     public HttpRequest(Context c) {
         this.context = c;
