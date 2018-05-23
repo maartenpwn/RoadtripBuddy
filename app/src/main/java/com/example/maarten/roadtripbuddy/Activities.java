@@ -6,9 +6,6 @@ public class Activities {
     private String _activityname;
     private String _cityname;
 
-    //Added this empty constructor in lesson 50 in case we ever want to create the object and assign it later.
-//     public Activities(){}
-
     public Activities(String activityName, String cityName) {
         this._activityname = activityName;
         this._cityname = cityName;
@@ -17,11 +14,9 @@ public class Activities {
     public int get_id() {
         return _id;
     }
-
     public void set_id(int _id) {
         this._id = _id;
     }
-
 
     public String get_activityname() {
         return _activityname;
@@ -30,11 +25,9 @@ public class Activities {
         return _cityname;
     }
 
-
     public void set_activityname(String _activityname) {
         this._activityname = _activityname;
     }
-
     public void set_cityname(String _cityname) {
         this._cityname = _cityname;
     }

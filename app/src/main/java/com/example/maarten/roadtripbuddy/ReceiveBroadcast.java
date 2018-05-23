@@ -12,7 +12,7 @@ import android.util.Log;
 public class ReceiveBroadcast extends BroadcastReceiver {
 
     private final static String BATTERY_LEVEL = "level";
-    private static final String TAG = "poep";
+    private static final String TAG = "myTag";
 
     public ReceiveBroadcast() {
     }
@@ -20,15 +20,18 @@ public class ReceiveBroadcast extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        // Get the battery level
         int level = intent.getIntExtra(BATTERY_LEVEL, 0);
         Log.d(TAG, "onReceive: batterij leverl: " + level);
 
+        // If the battery is below 26% show notification
         if(level < 26){
             Log.d(TAG, "onReceive: low battery!" + level);
             showNotification(context);
         }
     }
 
+    // Create a notification
     private void showNotification(Context context) {
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
                 new Intent(context, OverviewActivity.class), 0);

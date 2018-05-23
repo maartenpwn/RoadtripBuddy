@@ -23,29 +23,29 @@ import java.util.Iterator;
 
 public class HttpRequest extends AsyncTask<Void,Void,String> {
 
+    /* **************************************************************** */
+    // For this school exercise i have to show that i am able to send
+    // a post request to a webservice. Because im not required to create
+    // a webservice i send static data to my webservice just to prove.
+    /* **************************************************************** */
+
     private static final String TAG = "myLog";
     Context context;
     ProgressDialog pd;
 
-    // The post url
+    // The url
     String urlAddress="https://stud.hosted.hr.nl/0882911/restfull/books";
 
     // The fields we create static
-    String titleField = "veld10";
-    String authorField = "veld10";
-    String genreField = "veld10";
+    String titleField = "veld11";
+    String authorField = "veld11";
+    String genreField = "veld11";
 
-    /*
-        1.OUR CONSTRUCTOR
-        2.RECEIVE CONTEXT,URL ADDRESS AND EDITTEXTS FROM OUR MAINACTIVITY
-    */
     public HttpRequest(Context c) {
         this.context = c;
     }
 
-    /*
-        1.SHOW PROGRESS DIALOG WHILE DOWNLOADING DATA
-    */
+    // Progress dialog if people have to wait
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -56,20 +56,13 @@ public class HttpRequest extends AsyncTask<Void,Void,String> {
         pd.show();
     }
 
-    /*
-    1.WHERE WE SEND DATA TO NETWORK
-    2.RETURNS FOR US A STRING
-     */
     @Override
     protected String doInBackground(Void... params) {
         return this.send();
     }
 
-    /*
-      1. CALLED WHEN JOB IS OVER
-      2. WE DISMISS OUR PD
-      3.RECEIVE A STRING FROM DOINBACKGROUND
-   */
+    // When we get a response we dismiss the progress dialog
+    // and receive a string if we are successful
     @Override
     protected void onPostExecute(String response) {
         super.onPostExecute(response);
@@ -86,13 +79,9 @@ public class HttpRequest extends AsyncTask<Void,Void,String> {
         }
     }
 
-    /*
-    SEND DATA OVER THE NETWORK
-    RECEIVE AND RETURN A RESPONSE
-     */
+    // Send the data
     private String send()
     {
-        //CONNECT
         HttpURLConnection con = connect(urlAddress);
 
         if(con==null) {
@@ -102,41 +91,35 @@ public class HttpRequest extends AsyncTask<Void,Void,String> {
         try {
             OutputStream os = con.getOutputStream();
 
-            //WRITE
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
             bw.write(packData());
 
             bw.flush();
 
-            //RELEASE RES
             bw.close();
             os.close();
 
-            //HAS IT BEEN SUCCESSFUL?
+            // Get the response code
             int responseCode = con.getResponseCode();
 
+            // If the response code is succesful
             if(responseCode == con.HTTP_OK)
             {
-                //GET EXACT RESPONSE
+                // Get the response
                 BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 StringBuffer response = new StringBuffer();
 
                 String line;
 
-                //READ LINE BY LINE
+                // Read line by line
                 while ((line = br.readLine()) != null)
                 {
                     response.append(line);
                 }
 
-                //RELEASE RES
                 br.close();
 
                 return response.toString();
-
-            }else
-            {
-
             }
 
         } catch (IOException e) {
@@ -146,11 +129,7 @@ public class HttpRequest extends AsyncTask<Void,Void,String> {
         return null;
     }
 
-    // Losse connect class eigenlijk
-    /*
-    1.SHALL HELP US ESTABLISH A CONNECTION TO THE NETWORK
-    2. WE ARE MAKING A POST REQUEST
-    */
+    // Create a connection with the network and make a post request
     public static HttpURLConnection connect(String urlAddress) {
 
         try
@@ -178,12 +157,7 @@ public class HttpRequest extends AsyncTask<Void,Void,String> {
 
     }
 
-
-    /*
-        SECTION 2
-        1.PACK THEM INTO A JSON OBJECT
-        2. READ ALL THIS DATA AND ENCODE IT INTO A FROMAT THAT CAN BE SENT VIA NETWORK
-    */
+    // Create a jsonobject with the data we want to post
     public String packData()
     {
         JSONObject jo = new JSONObject();

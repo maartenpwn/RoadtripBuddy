@@ -18,6 +18,7 @@ public class CustomAdapter extends ArrayAdapter<String> {
         super(context, R.layout.custom_row, citys);
     }
 
+    // Custom list view adapter. i inflate this with my custom layout custom_row
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

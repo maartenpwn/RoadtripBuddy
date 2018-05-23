@@ -9,27 +9,25 @@ import android.widget.TextView;
 
 public class AddCityActivity extends AppCompatActivity {
 
+    private static final String TAG = "myTag";
+
     EditText detailUserInput;
     TextView detailRecords;
     MyDBHandler dbHandler;
     String cityName;
-
-    private static final String TAG = "poep";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_city);
 
-        // Get the data if intended.
+        // Get the intended data
         Bundle theData = getIntent().getExtras();
-
         cityName = theData.getString("cityName");
 
         TextView detailCityName = (TextView) findViewById(R.id.detailCityName);
         detailCityName.setText(cityName);
 
-        // DB shit
         detailUserInput = (EditText) findViewById(R.id.detailUserInput);
         detailRecords = (TextView) findViewById(R.id.detailRecords);
 
@@ -37,7 +35,7 @@ public class AddCityActivity extends AppCompatActivity {
         printDatabase();
     }
 
-    //Print the database
+    // Print the database
     public void printDatabase(){
         String dbString = dbHandler.databaseToString(cityName);
 
@@ -45,28 +43,24 @@ public class AddCityActivity extends AppCompatActivity {
         detailUserInput.setText("");
     }
 
-    //add your elements onclick methods.
-    //Add a product to the database
+    // When you click add we add the activty to the selected city and also safe it in the db
     public void addButtonClicked(View view){
-        // dbHandler.add needs an object parameter.
         Activities activity = new Activities(detailUserInput.getText().toString(), cityName);
-
-        Log.d(TAG, "addButtonClicked: stad " + cityName);
-
         dbHandler.addActivity(activity);
         printDatabase();
 
-        // asdfasdf afadsfadsf
-        // asdfsdfdasfadfadsfs
-        // asdfasdfadsfdsf
+        /* **************************************************************** */
+        // For this school exercise i have to show that i am able to send
+        // a post request to a webservice. Because im not required to create
+        // a webservice i send static data to my webservice just to prove
+        /* **************************************************************** */
+
+        // create a post request and execute it
         HttpRequest theRequest = new HttpRequest (this);
         theRequest.execute();
-        // asdfasdf afadsfadsf
-        // asdfsdfdasfadfadsfs
-        // asdfasdfadsfdsf
     }
 
-    //Delete items
+    // Function to delete a activity from the list
     public void deleteButtonClicked(View view){
         // dbHandler delete needs string to find in the db
         String inputText = detailUserInput.getText().toString();

@@ -10,18 +10,13 @@ import android.widget.ListView;
 
 public class MyCitysActivity extends AppCompatActivity {
 
-    // TextView detailRecords;
+    private static final String TAG = "myTag";
     MyDBHandler dbHandler;
-
-    private static final String TAG = "poep";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_citys);
-
-
-        // detailRecords = (TextView) findViewById(R.id.detailRecords);
 
         dbHandler = new MyDBHandler(this, null, null, 1);
         printCitys();
@@ -31,29 +26,26 @@ public class MyCitysActivity extends AppCompatActivity {
     public void printCitys(){
         String dbString = dbHandler.CitydatabaseToString();
 
-        // Convert the string to array
+        // Convert the string to array and split on the ,
         String[] citys = dbString.split(",");
 
+        // Put the array in the custom list
         createCustomListAdapter(citys);
-
-        // detailRecords.setText(dbString);
     }
 
+    // function to create the custom adapter
     public void createCustomListAdapter(String[] citys) {
-
-
         // Adding the custom adapter here.
         ListAdapter myAdapter = new CustomAdapter(this, citys);
         ListView myListView = (ListView) findViewById(R.id.myListView);
 
         myListView.setAdapter(myAdapter);
 
+        // Onclick go the addcity class and send the selected cityname with it
         myListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        // Haal uit de lijst van een bepaalde positie de item
-                        // value op (naam) en convert die in een string
                         String city = String.valueOf(parent.getItemAtPosition(position));
 
                         Intent i = new Intent(MyCitysActivity.this, AddCityActivity.class);

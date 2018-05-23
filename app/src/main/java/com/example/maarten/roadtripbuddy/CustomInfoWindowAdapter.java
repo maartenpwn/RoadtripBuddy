@@ -15,12 +15,13 @@ import com.google.android.gms.maps.model.Marker;
 
 public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
+    private static final String TAG = "myTag";
+
     private final View mWindow;
     private Context mContext;
     private String city;
 
-    private static final String TAG = "poep";
-
+    // Create a custom info window and add the cityname
     public CustomInfoWindowAdapter(Context mContext, String cityName) {
         this.mContext = mContext;
         city = cityName;
